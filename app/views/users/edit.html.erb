@@ -1,0 +1,56 @@
+<% provide(:title, "Edit user") %>
+<h1 style = "color:#fff;font-family:Comic Sans MS, cursive, sans-serif;">Update your profile</h1>
+<div class="row">
+<div class="col-md-4 col-md-offset-4">
+<%= form_for(@user) do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+                <div class="uk-block" style="padding-bottom: 10px;">
+                <%= f.text_field :first_name,class: 'form-control' ,"placeholder"=>"First Name"%>
+                </div>
+                <!-- End First name INPUT -->
+
+                <!-- Start Last name INPUT -->
+                <div class="uk-block" style="padding-bottom: 10px;">
+                 <%= f.text_field :last_name,class: 'form-control' ,"placeholder"=>"Last Name"%>
+                </div>
+                <!-- End Last name INPUT -->
+
+                <!-- Start Email adress INPUT -->
+                <div class="uk-block" style="padding-bottom: 10px;">
+                 <%= f.email_field  :email,class: 'form-control' ,"placeholder"=>"Email"%>
+                </div>
+                <!-- End Email adress INPUT -->
+
+                <!-- Start USERNAME INPUT -->
+                <div class="uk-block" style="padding-bottom: 10px;">
+                <%= f.text_field  :user_name,class: 'form-control' ,"placeholder"=>"Username"%>
+                </div>
+
+                 <div><h3 style="color:#000;margin-top: 5px;text-align :center;font-family:Comic Sans MS, cursive, sans-serif;">Pet info</h3></div>
+
+                 <label class="uk-form-label" style="padding-left: 42.5% ; color:#000;" for="form-horizontal-select">Type</label>
+                    <div class="uk-form-controls" style="margin-left: 37%;padding-bottom: 10px;">
+                    <%= f.select(:animaltype, ['Cat','dog'],{include_blank: "------"} , {:style => "width:70px"}) %>
+                    <%# can't put this " {:id=> "form-horizontal-select"} "%>
+                     </div>
+                 <!-- Start PASSWORD INPUT -->
+                <div class="uk-block" style="padding-bottom: 10px;">
+                 <%= f.text_field  :animalname,class: 'form-control' ,"placeholder"=>"Name"%>
+                </div>
+                <!-- End PASSWORD INPUT -->
+
+                <div class="uk-margin uk-grid-small uk-child-width-auto" uk-grid>
+                    <p style ="color:#000;font-weight:800;text-align :center;font-family:Comic Sans MS, cursive, sans-serif;" >Gender</p>
+                      <label id="label1"><%= f.radio_button(:animalgender, "male","class"=>"uk-radio"  )%>Male</label>
+                      <label id="label2"><%= f.radio_button(:animalgender, "female","class"=>"uk-radio"  )%>Female</label>
+                  </div>
+                  <div class="gravatar_edit">
+<%= gravatar_for @user %>
+<a href="http://gravatar.com/emails" target=_blank>change</a>
+</div>
+
+
+<%= f.submit "Save changes", class: "btn btn-primary" %>
+<% end %>
+</div>
+</div>

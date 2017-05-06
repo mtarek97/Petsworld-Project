@@ -1,0 +1,17 @@
+<% provide(:title, 'All users') %>
+<h1 style="color:#fff;font-family:Comic Sans MS, cursive, sans-serif;">All users</h1>
+
+<%= form_tag(users_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+<%= submit_tag "Search" %>
+<% end %>
+<% if @users.present? %>
+<ul class="users" >
+		<%= render @users %>
+</ul><% else %>
+<h1 style="color:#fff;font-family:Comic Sans MS, cursive, sans-serif;">There are no users have this name <%= params[:search]%> </h1>
+
+<% end %>
+
+
+

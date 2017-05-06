@@ -1,0 +1,11 @@
+<%= form_for(@post, html: { multipart: true }) do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+<div class="field">
+	<%= f.text_area :content, placeholder: "What's in your Mind ...." %>
+</div>
+<span class="picture">
+	<%= f.file_field :image %>
+</span>
+<%= f.submit "Post", class: "btn btn-primary" %>
+
+<% end %>

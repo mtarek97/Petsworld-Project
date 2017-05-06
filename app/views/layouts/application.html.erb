@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= yield(:title) %> | Pets World</title>
+	<%= stylesheet_link_tag 'application', media: 'all',
+	'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
+</head>
+<% if !logged_in? %>
+	<body class="body-welcome">
+<% else %>
+	<body>
+<% end %>  
+		<%= render 'layouts/header' if logged_in? %>
+		<div class="container">
+			<% flash.each do |message_type, message| %>
+			<div class="alert alert-<%= message_type %>"><%= message %></div>
+			<% end %>
+			<%= yield %>
+			<%= render 'layouts/footer' if logged_in? %>
+		</div>
+	</body>
+</html>

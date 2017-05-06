@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
 	<title><%= yield(:title) %> | Pets World</title>
 	<%= stylesheet_link_tag 'application', media: 'all',
 	'data-turbolinks-track' => true %>
@@ -8,10 +9,10 @@
 	<%= csrf_meta_tags %>
 </head>
 <% if !logged_in? %>
-	<body class="body-welcome">
-<% else %>
+<body class="body-welcome">
+	<% else %>
 	<body>
-<% end %>  
+		<% end %>  
 		<%= render 'layouts/header' if logged_in? %>
 		<div class="container">
 			<% flash.each do |message_type, message| %>
@@ -21,4 +22,4 @@
 			<%= render 'layouts/footer' if logged_in? %>
 		</div>
 	</body>
-</html>
+	</html>

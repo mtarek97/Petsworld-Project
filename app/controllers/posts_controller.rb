@@ -5,6 +5,8 @@ class PostsController < ApplicationController
 	def create
 		@post = current_user.posts.build(post_params)
 		if @post.save
+			# Will search for create.js.erb
+			#or
 			flash[:success] = "post created!"
 			redirect_to root_url
 		else
@@ -13,26 +15,37 @@ class PostsController < ApplicationController
 		end
 	end
 	def auto_link_usernames(text)
-  text.gsub /(?<=\s|^)@[A-Za-z0-9_]+(?=\b)/ do |username|
-  link_to(username, user_path(username.gsub('@', '')))
-  end.html_safe
-end
+		text.gsub /(?<=\s|^)@[A-Za-z0-9_]+(?=\b)/ do |username|
+			link_to(username, user_path(username.gsub('@', '')))
+		end.html_safe
+	end
 
 	def destroy
 		@post.destroy
 		flash[:success] = "Post deleted"
 		redirect_to request.referrer || root_url
 	end
-def index
-  @users = User.search(params[:search])
-end
-	private
-		def post_params
-			params.require(:post).permit(:content, :picture,:image)
-		end
 
-		def correct_user
-			@post = current_user.posts.find_by(id: params[:id])
-			redirect_to root_url if @post.nil?
+	def show
+		@post = Post.find(params[:id])
+	end
+
+	def index
+		if params[:tag]
+			@posts = Post.tagged_with(params[:tag])
+			@tag = params[:tag]
+		else
+			@posts = Post.all
 		end
+	end
+
+	private
+	def post_params
+		params.require(:post).permit(:content, :picture,:image , :all_tags)
+	end
+
+	def correct_user
+		@post = current_user.posts.find_by(id: params[:id])
+		redirect_to root_url if @post.nil?
+	end
 end

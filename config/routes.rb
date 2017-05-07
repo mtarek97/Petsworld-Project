@@ -7,7 +7,8 @@ Rails.application.routes.draw do
 	get 'login' => 'sessions#new'
 	post 'login' => 'sessions#create'
 	delete 'logout' => 'sessions#destroy'
-
+	get 'tags/:tag', to: 'posts#index', as: "tag"
+	root 'posts#index'
 	resources :users
 
 	resources :users do
@@ -16,6 +17,6 @@ Rails.application.routes.draw do
 		end
 	end
 
-	resources :posts, only: [:create, :destroy]
+	resources :posts, only: [:create, :destroy , :show]
 	resources :relationships, only: [:create, :destroy]
 end

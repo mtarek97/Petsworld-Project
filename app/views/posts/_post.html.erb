@@ -16,6 +16,16 @@
 		<%= link_to "edit   ", edit_post_path(post) %>
 		<% end %>
 				<%= taggle_like_button(post,current_user)%>
+		<% count=0%>
+	<% User.all.each do |user| %>
+ 			<% if user.likes?(post) %>
+					<% count=count+1 %>
+				 	<% end %>
+               	<% end%>
+               	 <%if count!=0 %> 
+	<%= count%>
+	<%end%>
+
 
 	</span>
 </li>

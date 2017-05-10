@@ -41,6 +41,7 @@ class PostsController < ApplicationController
 		else
 			current_user.like(@post)
 		end	
+	
 		redirect_to :back
 	end
 	def show

@@ -6,7 +6,7 @@ def taggle_like_button(post, user)
 	
 if user.likes?(post)
 
-link_to "unlike", like_post_path(post)
+ link_to "unlike", like_post_path(post)
 else
 	link_to "like", like_post_path(post)
 end

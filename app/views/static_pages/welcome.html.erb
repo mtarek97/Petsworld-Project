@@ -2,10 +2,11 @@
 <% if logged_in? %>
 <div class="row">
 	<aside class="tags-cloud glassy-bg" style="margin-left: 75%">
-		<h3 style="color: white;">Tags Cloud</h3>
-		<% tag_cloud Tag.counts, %w{css1 css2 css3 css4} do |tag, css_class| %>
-		<%= link_to tag.name, tag_path(tag.name), class: css_class %>
+		<h4 style="color: white;">Most 10 Trend Tags</h4>
+		<% @tags.order('Posts_count DESC').first(10).each do |tag| %>
+		<li style ="color:white;"><%= link_to tag.name, tag_path(tag.name) %> (<%= tag.posts_count %> posts)</li>
 		<% end %>
+		<li  style ="color:white;"><%= link_to "More Tags ..", tags_path %></li>
 	</aside>
 	<aside class="col-md-5 col-md-offset-3" style="margin-left: 30%" >
 		<div class="homepost">

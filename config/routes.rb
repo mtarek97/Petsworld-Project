@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+	#get 'tags/index'
+
 	root 'static_pages#welcome'
 	get 'help' => 'static_pages#help'
 	get 'about' => 'static_pages#about'
@@ -10,7 +12,7 @@ Rails.application.routes.draw do
 	get 'tags/:tag', to: 'posts#index', as: "tag"
 	root 'posts#index'
 	resources :users
-
+	resources :tags
 	resources :users do
 		member do
 			get :following, :followers

@@ -1,11 +1,11 @@
 class User < ApplicationRecord
 	has_many :posts, dependent: :destroy
 	has_many :active_relationships, class_name: "Relationship",
-									foreign_key: "follower_id",
-									dependent: :destroy
+	foreign_key: "follower_id",
+	dependent: :destroy
 	has_many :passive_relationships, class_name: "Relationship",
-									foreign_key: "followed_id",
-									dependent: :destroy
+	foreign_key: "followed_id",
+	dependent: :destroy
 	has_many :following, through: :active_relationships, source: :followed
 	has_many :followers, through: :passive_relationships, source: :follower
 	
@@ -13,8 +13,8 @@ class User < ApplicationRecord
 	validates :user_name, presence: true, length: { maximum: 50 }
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	validates :email, presence: true, length: { maximum: 255 },
-					  format: { with: VALID_EMAIL_REGEX },
-					  uniqueness: { case_sensitive: false }
+	format: { with: VALID_EMAIL_REGEX },
+	uniqueness: { case_sensitive: false }
 	has_secure_password
 	validates :password, length: { minimum: 6 }, allow_blank: true
 
@@ -22,13 +22,14 @@ class User < ApplicationRecord
 	# Returns a user's status feed.
 	def feed
 		following_ids = "SELECT followed_id FROM relationships
-						WHERE follower_id = :user_id"
+		WHERE follower_id = :user_id"
 		Post.where("user_id IN (#{following_ids})
-						OR user_id = :user_id", user_id: id)
+			OR user_id = :user_id", user_id: id)
 	end
+	
 	def self.search(search)
-  where("user_name LIKE ?", "%#{search}%") 
-end
+		where("user_name LIKE ?", "%#{search}%") 
+	end
 
 
 	# Follows a user.

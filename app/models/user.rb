@@ -17,7 +17,7 @@ class User < ApplicationRecord
 	uniqueness: { case_sensitive: false }
 	has_secure_password
 	validates :password, length: { minimum: 6 }, allow_blank: true
-
+   act_as_liker
 
 	# Returns a user's status feed.
 	def feed

@@ -17,6 +17,8 @@ group :production do
   gem 'pg'
   gem 'rails_12factor', '0.0.2'
 end
+gem 'like_system'
+
 # Use Puma as the app server
 gem 'paperclip', '~> 4.3', '>= 4.3.6'
 gem 'puma', '~> 3.0'

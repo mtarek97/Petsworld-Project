@@ -32,7 +32,17 @@ class PostsController < ApplicationController
 		flash[:success] = "Post deleted"
 		redirect_to request.referrer || root_url
 	end
+def like
 
+@post=Post.find(params[:id])
+if current_user.likes?(@post)
+
+current_user.unlike(@post)
+else
+current_user.like(@post)
+end	
+redirect_to :back
+end
 	def show
 		@post = Post.find(params[:id])
 	end

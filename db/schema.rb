@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170509145719) do
+ActiveRecord::Schema.define(version: 20170510194736) do
+
+  create_table "likes", force: :cascade do |t|
+    t.string   "likee_type"
+    t.integer  "likee_id"
+    t.string   "liker_type"
+    t.integer  "liker_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["likee_id", "likee_type", "liker_id", "liker_type"], name: "likes_likee_liker_idx", unique: true
+    t.index ["likee_id", "likee_type"], name: "likes_likee_idx"
+    t.index ["liker_id", "liker_type"], name: "likes_liker_idx"
+  end
 
   create_table "posts", force: :cascade do |t|
     t.text     "content"

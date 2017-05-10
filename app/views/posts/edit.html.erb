@@ -1,9 +1,26 @@
+<% provide(:title, @post.content) %>
 <div class="row">
 	<aside class="col-md-5 col-md-offset-3" style="margin-left: 30%" >
 		<div class="homepost">
 			<h4 style ="color:white;font-weight: bold;text-align:center;border-radius:6px;background-color:#1e87f0;padding :10px 10px 10px 10px ;">Edit post</h4>
 			<section class="post_form">
-				<%= render 'shared/post_form' %>
+				<%= form_for(@post, html: { multipart: true }) do |f| %>
+				<%= render 'shared/error_messages', object: f.object %>
+				<div class="field">
+					<%= f.text_area :content, placeholder: "What's on your Mind ...." %>
+				</div>
+				<div>
+					<%= f.text_field :all_tags %>
+				</div>
+				<span class="picture">
+					<%= f.file_field :image %>
+				</span>
+				<span class="picture">
+					<%= image_tag @post.image.url(:medium) if @post.image? %>
+				</span>
+				<%= f.submit "Edit", class: "btn btn-primary" %>
+
+				<% end %>			
 			</section>
 		</div>
 	</aside>

@@ -1,4 +1,6 @@
+<% if tag.posts_count != 0 %>
 <li>
 	<%=raw tag_links(tag.name)  %>
 	(<%= tag.posts_count %> posts)
 </li>
+<% end %>

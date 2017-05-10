@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 
 	def create
 		@post = current_user.posts.build(post_params)
+		@tags = Tag.all.order('posts_count DESC')
 		if @post.save
 			flash[:success] = "post created!"
 			redirect_to root_url

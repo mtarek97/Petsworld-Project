@@ -19,10 +19,18 @@ Rails.application.routes.draw do
 		end
 	end
 	resources :posts do
-	member do
-		get 'like'
+		member do
+			get 'like'
+		end
 	end
-end
+
+	resources :posts do
+		resources :comments
+	end
+
+	resources :comments do
+		resources :comments
+	end
 
 	resources :posts, only: [:create, :destroy , :show , :edit ,:update, :like]
 	resources :relationships, only: [:create, :destroy]

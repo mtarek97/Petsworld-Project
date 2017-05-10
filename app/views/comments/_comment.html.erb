@@ -1,0 +1,31 @@
+<li>
+	<%= link_to gravatar_for(comment.user, size: 25), comment.user %>
+	<span ><small><%= link_to comment.user.user_name, comment.user %></small></span><br>
+	<%= comment.body %><br>
+	<small>Submitted <%= time_ago_in_words(comment.created_at) %> ago</small>
+
+	<h5>Replies (<%= comment.comments.count %>)</h5>
+	<ul>
+		<% comment.comments.each do |reply| %>
+		<li><%= link_to gravatar_for(reply.user, size: 25), reply.user %>
+			<span ><small><%= link_to reply.user.user_name, reply.user %></small></span><br>
+			<%= reply.body %><br>
+			<small>Submitted <%= time_ago_in_words(reply.created_at) %> ago</small>
+		</li>
+		<% end %>
+	</ul>
+
+	<%= form_for [comment, Comment.new] do |f| %>
+	<li><%= link_to gravatar_for(current_user, size: 25), current_user %>
+		<span >
+			<small><%= link_to current_user.user_name, current_user %></small>
+		</span>
+		<br>
+		<div class="field" style="color:black;"><%= f.text_area :body, placeholder: "Add a Reply" %>
+			<br/>
+			<%= f.submit "Reply"  %>
+		</div>
+	</li>
+	<% end %>
+
+</li>

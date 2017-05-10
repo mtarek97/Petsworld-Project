@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+	has_many :comments, as: :commentable , dependent: :destroy
 	has_many :taggings ,:dependent => :destroy
 	has_many :tags,through: :taggings
 
@@ -13,7 +14,7 @@ class Post < ApplicationRecord
 	has_attached_file :image, styles: { large:"600x600>",medium: "400x400>", thumb: "100x100#" }
 	validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
-  act_as_likee
+	act_as_likee
 
 	def all_tags=(names)
 		self.tags = names.split(",").map do |name|

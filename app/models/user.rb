@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+	has_many :comments, dependent: :destroy
 	has_many :posts, dependent: :destroy
 	has_many :active_relationships, class_name: "Relationship",
 	foreign_key: "follower_id",
@@ -17,7 +18,7 @@ class User < ApplicationRecord
 	uniqueness: { case_sensitive: false }
 	has_secure_password
 	validates :password, length: { minimum: 6 }, allow_blank: true
-   act_as_liker
+	act_as_liker
 
 	# Returns a user's status feed.
 	def feed

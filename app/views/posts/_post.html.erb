@@ -5,7 +5,7 @@
 	<span class="content"><%=  simple_format(post.content.gsub(/\n/, '<br/>').gsub( / / ,'&nbsp;'))  %>
 		<%= image_tag post.image.url(:medium) if post.image? %>
 		<div class="tags">
-		<%=raw tag_links(post.all_tags)%>
+			<%=raw tag_links(post.all_tags)%>
 		</div>
 	</span>
 	<span class="timestamp">
@@ -15,7 +15,32 @@
 		data: { confirm: "You sure?" } %> ,
 		<%= link_to "edit   ", edit_post_path(post) %>
 		<% end %>
-				<%= taggle_like_button(post,current_user)%>
+		<%= taggle_like_button(post,current_user)%>
+		<% count=0%>
+		<% User.all.each do |user| %>
+		<% if user.likes?(post) %>
+		<% count=count+1 %>
+		<% end %>
+		<% end%>
+		<%if count!=0 %> 
+		<%= count%>
+		<%end%>
 
-	</span>
+	</span >
+	<div >
+		<h4>Comments (<%= post.comments.count %>)</h4>
+		<ul>
+			<% post.comments.each do |comment| %>
+			<%= render partial: 'comments/comment', collection: post.comments %>		
+			<% end %>
+		</ul>
+		<div>
+			<%= form_for [post, Comment.new] do |f| %>
+			<%= link_to gravatar_for(current_user, size: 25), current_user %>
+			<span ><small><%= link_to current_user.user_name, current_user %></small></span>
+			<div class="field" style="color:black;"><%= f.text_area :body, placeholder: "Add a comment" %><br/></div>
+			<%= f.submit "Add Comment" , class: "btn btn-primary" %>
+			<% end %>
+		</div>
+	</div>
 </li>

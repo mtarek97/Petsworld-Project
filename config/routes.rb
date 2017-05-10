@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+	#get 'tags/index'
+
 	root 'static_pages#welcome'
 	get 'help' => 'static_pages#help'
 	get 'about' => 'static_pages#about'
@@ -7,15 +9,16 @@ Rails.application.routes.draw do
 	get 'login' => 'sessions#new'
 	post 'login' => 'sessions#create'
 	delete 'logout' => 'sessions#destroy'
-
+	get 'tags/:tag', to: 'posts#index', as: "tag"
+	root 'posts#index'
 	resources :users
-
+	resources :tags
 	resources :users do
 		member do
 			get :following, :followers
 		end
 	end
 
-	resources :posts, only: [:create, :destroy]
+	resources :posts, only: [:create, :destroy , :show]
 	resources :relationships, only: [:create, :destroy]
 end

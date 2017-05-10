@@ -6,6 +6,7 @@ class Post < ApplicationRecord
 	default_scope -> { order(created_at: :desc) }
 	mount_uploader :picture, PictureUploader
 
+	validates_presence_of :all_tags
 	validates :user_id, presence: true
 	validates :content, presence: true, length: { maximum: 140 }
 	validate :picture_size

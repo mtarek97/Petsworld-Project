@@ -21,3 +21,15 @@
 
 en:
   hello: "Hello world"
+
+  en:
+  activerecord:
+    attributes:
+      post:
+        all_tags: ""
+    errors:
+      models:
+        post:
+          attributes:
+            all_tags:
+              blank: "You must enter at least 1 tag"

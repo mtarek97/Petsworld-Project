@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 	before_action :logged_in_user, only: [:create, :destroy]
-	before_action :correct_user, only: :destroy
+	before_action :correct_user, only: [:destroy, :edit , :update]
 
 	def create
 		@post = current_user.posts.build(post_params)
@@ -45,6 +45,16 @@ class PostsController < ApplicationController
 		end
 	end
 
+	def edit
+		@post = Post.find(params[:id])  
+	end
+
+	def update  
+		@post = Post.find(params[:id])
+		@post.update(post_params)
+		redirect_to(post_path(@post))
+	end  
+
 	private
 	def post_params
 		params.require(:post).permit(:content, :picture,:image , :all_tags)
@@ -54,4 +64,6 @@ class PostsController < ApplicationController
 		@post = current_user.posts.find_by(id: params[:id])
 		redirect_to root_url if @post.nil?
 	end
+
+
 end

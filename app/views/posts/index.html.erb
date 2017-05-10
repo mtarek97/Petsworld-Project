@@ -1,11 +1,11 @@
 <% provide(:title, @tag.name) %>
 <div class="row">
-<h2 style="color: white;"><%= @tag.name %><small> (<%= @tag.posts_count %> posts)</small></h2>
-<div class="col-md-8">
-<ol class="posts">
- <%= render @posts %>
-</ol>
-</div>
+	<h2 style="color: white;"><%= @tag.name %><small> (<%= @tag.posts_count %> posts)</small></h2>
+	<div class="col-md-8">
+		<ol class="posts">
+			<%= render @posts %>
+		</ol>
+	</div>
 </div>
 
 

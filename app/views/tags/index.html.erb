@@ -1,14 +1,22 @@
-<% provide(:title, 'All Tags') %>
-<h1 style="color:#fff;font-family:Comic Sans MS, cursive, sans-serif;">All Tags</h1>
+<% provide(:title, params[:search]) %>
+<h1 style="color:#1e87f0;font-family:Comic Sans MS, cursive, sans-serif;">Search for Posts tagged with "<%= params[:search] %>"</h1>
 
 <%= form_tag(tags_path, :method => "get", id: "search-form") do %>
 <%= text_field_tag :search, params[:search], placeholder: "Search Tags" %>
 <%= submit_tag "Search" %>
 <% end %>
 <% if @tags.present? %>
-<ul class="users" >
-	<%= render @tags %>
-</ul><% else %>
+<aside class="users" >
+	<% @tags.each do |tag| %>
+	<h2><%= tag.name %><small> (<%= tag.posts_count %> posts)</small></h2>
+	<div class="users">
+		<ul class="posts">
+			<%= render tag.posts %>
+		</ul>
+	</div>
+	<% end %>
+</aside>
+<% else %>
 <h1 style="color:#fff;font-family:Comic Sans MS, cursive, sans-serif;">There are no tags have this name : <%= params[:search]%> </h1>
 
 <% end %>

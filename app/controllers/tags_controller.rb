@@ -5,6 +5,7 @@ class TagsController < ApplicationController
 
 		else
 			@tags = Tag.all.order('posts_count DESC')
+			render 'tags/all'
 
 		end
 	end

@@ -14,18 +14,18 @@
 		</li>
 		<% end %>
 	</ul>
-
-	<%= form_for [comment, Comment.new] do |f| %>
-	<li><%= link_to gravatar_for(current_user, size: 25), current_user %>
-		<span >
-			<small><%= link_to current_user.user_name, current_user %></small>
-		</span>
-		<br>
-		<div class="field" style="color:black;"><%= f.text_area :body, placeholder: "Add a Reply" %>
-			<br/>
-			<%= f.submit "Reply"  %>
-		</div>
-	</li>
-	<% end %>
-
 </li>
+
+<%= form_for [comment, Comment.new] do |f| %>
+<li><%= link_to gravatar_for(current_user, size: 25), current_user %>
+	<span >
+		<small><%= link_to current_user.user_name, current_user %></small>
+	</span>
+	<br>
+	<div class="field" style="color:black;"><%= f.text_area :body, placeholder: "Add a Reply" %>
+		<br/>
+		<%= f.submit "Reply"  %>
+	</div>
+</li>
+<% end %>
+

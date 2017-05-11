@@ -30,9 +30,7 @@
 	<div >
 		<h4>Comments (<%= post.comments.count %>)</h4>
 		<ul>
-			<% post.comments.each do |comment| %>
 			<%= render partial: 'comments/comment', collection: post.comments %>		
-			<% end %>
 		</ul>
 		<div>
 			<%= form_for [post, Comment.new] do |f| %>

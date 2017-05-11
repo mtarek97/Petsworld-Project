@@ -29,14 +29,10 @@ class CommentsController < ApplicationController
 
 	def destroy
 		@comment = @commentable.comments.find(params[:id])
-		if (@comment.commentable_type == "Post")
-			@comment.destroy
-			flash[:success] = "Comment deleted :("
-		elsif (@comment.commentable_type == "Comment")
-			@comment.destroy
-			flash[:success] = "Reply deleted :("
+		@comment.destroy
+		respond_to do |format|
+			format.js
 		end
-		redirect_to :back
 	end  
 
 	private

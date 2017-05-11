@@ -28,12 +28,12 @@
 
 	</span >
 	<div >
-		<h4>Comments (<%= post.comments.count %>)</h4>
+		<h4 id="comments_counter">Comments (<%= post.comments.count %>)</h4>
 		<ul>
 			<%= render partial: 'comments/comment', locals: {post: post}, collection: post.comments %>		
 		</ul>
 		<div>
-			<%= form_for [post, Comment.new] do |f| %>
+			<%= form_for ([post, Comment.new]) do |f| %>
 			<%= link_to gravatar_for(current_user, size: 25), current_user %>
 			<span ><small><%= link_to current_user.user_name, current_user %></small></span>
 			<div class="field" style="color:black;"><%= f.text_area :body, placeholder: "Add a comment" %><br/></div>

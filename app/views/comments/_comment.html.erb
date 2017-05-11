@@ -1,36 +1,40 @@
-<li>
-	<%= link_to gravatar_for(comment.user, size: 25), comment.user %>
-	<span ><small><%= link_to comment.user.user_name, comment.user %></small></span><br>
-	<%= comment.body %><br>
-	<small>Submitted <%= time_ago_in_words(comment.created_at) %> ago</small>
-	<% if current_user?(comment.user) %>
-	, <%= link_to "delete", post_comment_path(post,comment), method: :delete, data: { confirm: 'Are you sure?' } %>
-	<% end %>
-	<h5>Replies (<%= comment.comments.count %>)</h5>
-	<ul>
-		<% comment.comments.each do |reply| %>
-		<li><%= link_to gravatar_for(reply.user, size: 25), reply.user %>
-			<span ><small><%= link_to reply.user.user_name, reply.user %></small></span><br>
-			<%= reply.body %><br>
-			<small>Submitted <%= time_ago_in_words(reply.created_at) %> ago</small>
-			<% if current_user?(reply.user) %>
-			, <%= link_to "delete", comment_comment_path(comment,reply), method: :delete, data: { confirm: 'Are you sure?' } %>
-			<% end %>
-		</li>
+<div>
+	<li>
+		<%= link_to gravatar_for(comment.user, size: 25), comment.user %>
+		<span ><small><%= link_to comment.user.user_name, comment.user %></small></span><br>
+		<%= comment.body %><br>
+		<small>Submitted <%= time_ago_in_words(comment.created_at) %> ago</small>
+		<% if current_user?(comment.user) %>
+		, <%= link_to "delete", post_comment_path(post,comment) , method: :delete, data: { confirm: 'Are you sure?' } ,remote: true, :class => 'delete_comment' %>
 		<% end %>
-	</ul>
-</li>
+		<h5 id="replies_counter">Replies (<%= comment.comments.count %>)</h5>
+		<ul>
+			<% comment.comments.each do |reply| %>
+			<div>
+				<li><%= link_to gravatar_for(reply.user, size: 25), reply.user %>
+					<span ><small><%= link_to reply.user.user_name, reply.user %></small></span><br>
+					<%= reply.body %><br>
+					<small>Submitted <%= time_ago_in_words(reply.created_at) %> ago</small>
+					<% if current_user?(reply.user) %>
+					, <%= link_to "delete", comment_comment_path(comment,reply), method: :delete, data: { confirm: 'Are you sure?' } ,remote: true, :class => 'delete_comment'%>
+					<% end %>
+				</li>
+			</div>
+			<% end %>
+		</ul>
+	</li>
 
-<%= form_for [comment, Comment.new] do |f| %>
-<li><%= link_to gravatar_for(current_user, size: 25), current_user %>
-	<span >
-		<small><%= link_to current_user.user_name, current_user %></small>
-	</span>
-	<br>
-	<div class="field" style="color:black;"><%= f.text_area :body, placeholder: "Add a Reply" %>
-		<br/>
-		<%= f.submit "Reply"  %>
-	</div>
-</li>
-<% end %>
+	<%= form_for [comment, Comment.new] do |f| %>
+	<li><%= link_to gravatar_for(current_user, size: 25), current_user %>
+		<span >
+			<small><%= link_to current_user.user_name, current_user %></small>
+		</span>
+		<br>
+		<div class="field" style="color:black;"><%= f.text_area :body, placeholder: "Add a Reply" %>
+			<br/>
+			<%= f.submit "Reply"  %>
+		</div>
+	</li>
+	<% end %>
 
+</div>

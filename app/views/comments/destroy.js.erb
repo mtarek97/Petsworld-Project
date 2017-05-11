@@ -1,0 +1,11 @@
+<% if(@comment.commentable_type == "Post") %>
+	$('.delete_comment').bind('ajax:success', function() {
+		$(this).closest('div').fadeOut();
+		$('#comments_counter').html('Comments (<%= @commentable.comments.count %>)');
+	});
+<% elsif (@comment.commentable_type == "Comment")%>
+	$('.delete_comment').bind('ajax:success', function() {
+		$(this).closest('div').fadeOut();
+		$('#replies_counter').html('Replies (<%= @commentable.comments.count %>)');
+	});
+<% end %>

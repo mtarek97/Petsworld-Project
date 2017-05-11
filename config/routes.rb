@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-	#get 'tags/index'
 
 	root 'static_pages#welcome'
 	get 'help' => 'static_pages#help'

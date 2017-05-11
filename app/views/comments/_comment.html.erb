@@ -13,7 +13,7 @@
 			<span ><small><%= link_to reply.user.user_name, reply.user %></small></span><br>
 			<%= reply.body %><br>
 			<small>Submitted <%= time_ago_in_words(reply.created_at) %> ago</small>
-			<% if current_user?(comment.user) %>
+			<% if current_user?(reply.user) %>
 			, <%= link_to "delete", comment_comment_path(comment,reply), method: :delete, data: { confirm: 'Are you sure?' } %>
 			<% end %>
 		</li>

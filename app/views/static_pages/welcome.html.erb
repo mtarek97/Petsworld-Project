@@ -1,26 +1,29 @@
 <% provide(:title, "Home") %>
 <% if logged_in? %>
 <div class="row">
-	<aside class="tags-cloud glassy-bg" style="margin-left: 75%">
-		<h4 style="color: white;">Most 10 Trend Tags</h4>
-		<% @tags.order('Posts_count DESC').first(10).each do |tag| %>
-		<li style ="color:white;"><%= link_to tag.name, tag_path(tag.name) %> (<%= tag.posts_count %> posts)</li>
-		<% end %>
-		<li  style ="color:white;"><%= link_to "More Tags ..", tags_path %></li>
-	</aside>
-	<aside class="col-md-5 col-md-offset-3" style="margin-left: 30%" >
-		<div class="homepost">
-			<h4 style ="color:white;font-weight: bold;text-align:center;border-radius:6px;background-color:#1e87f0;padding :10px 10px 10px 10px ;">Tell a story</h4>
+	<div class="col-md-4" >
+		<div class="homepost" >
 			<section class="post_form">
 				<%= render 'shared/post_form' %>
 			</section>
 		</div>
-	</aside>
-</div>
-<div class="row">
-	<div class="col-md-6 col-md-offset-3">
+	</div>
+	<div class="col-md-5">
 		<h3 id ="homeh">Post Feed</h3>
 		<%= render 'shared/feed' %>
+	</div>
+	<div class="col-md-3" >
+		<div  >
+			<div  style ="text-align: center;">
+				<h1 class ="topichead" >Topics</h1>
+			</div>
+				<ul class = "topics2" s>
+				<% @tags.order('Posts_count DESC').first(10).each do |tag| %>
+				<li class = "topics"><%= link_to tag.name, tag_path(tag.name) %></li>
+				<% end %>
+				<li class = "topics"><%= link_to "More Topics ..", tags_path %></li>
+				</ul>
+		</div>
 	</div>
 </div>
 <% else %>

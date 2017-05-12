@@ -1,35 +1,37 @@
 <% provide(:title, @user.user_name) %>
 <div class="row">
-<aside class="col-md-4">
-<div class="homepost" >
-<section class="user_info" >
-<div >
-<h1 >
-<%= gravatar_for @user %>
-<%= @user.user_name %>
-</h1>
-</div>
-<br>
-<div style="padding-top: 5px; ">
-<p class="phome">Animal name : <span style="display: inline;color:#000;"><%= @user.animalname %></span> </p>
-<p class="phome">Animal type : <span style="display: inline;color:#000;"><%= @user.animaltype %> </span></p>
-<p class="phome">Animal gender : <span style="display: inline;color:#000;"><%= @user.animalgender %></span> </p>
-</div>
+	<aside class="col-md-4">
+		<div>
+			<div class="homepost" >
+				<section class="user_info"  >
+					<div >
+						<h1 >
+							<%= gravatar_for @user %>
+							<%= @user.user_name %>
+						</h1>
+					</div>
+					<br>
+					<div style="padding-top: 5px; ">
+						<p class="phome">Animal name : <span style="display: inline;color:#000;"><%= @user.animalname %></span> </p>
+						<p class="phome">Animal type : <span style="display: inline;color:#000;"><%= @user.animaltype %> </span></p>
+						<p class="phome">Animal gender : <span style="display: inline;color:#000;"><%= @user.animalgender %></span> </p>
+					</div>
 
-</section>
-<section class="stats" >
-<%= render 'shared/stats' %>
-</section>
-</div>
-</aside>
-<div class="col-md-8">
-<%= render 'follow_form' if logged_in? %>
-<% if @user.posts.any? %>
-<h3>posts (<%= @user.posts.count %>)</h3>
-<ol class="posts">
-<%= render @posts %>
-</ol>
-<%= will_paginate @posts %>
-<% end %>
-</div>
+				</section>
+				<section class="stats" >
+					<%= render 'shared/stats' %>
+				</section>
+			</div>
+		</div>
+	</aside>
+	<div class="col-md-8">
+		<%= render 'follow_form' if logged_in? %>
+		<% if @user.posts.any? %>
+		<h3>posts (<%= @user.posts.count %>)</h3>
+		<ol class="posts">
+			<%= render @posts %>
+		</ol>
+		<%= will_paginate @posts %>
+		<% end %>
+	</div>
 </div>

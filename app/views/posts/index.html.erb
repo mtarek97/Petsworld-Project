@@ -1,7 +1,7 @@
 <% provide(:title, @tag.name) %>
 <div class="row">
-	<h2 style="color: white;"><%= @tag.name %><small> (<%= @tag.posts_count %> posts)</small></h2>
-	<div class="col-md-8">
+	<h2 style="color: #000; text-align:center ;"><%= @tag.name %><small> (<%= @tag.posts_count %> posts)</small></h2>
+	<div class="col-md-8 col-md-offset-2">
 		<ol class="posts">
 			<%= render @posts %>
 		</ol>

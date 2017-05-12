@@ -1,12 +1,15 @@
 <%= form_for(@post, html: { multipart: true }) do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 <div class="field">
+	<%= f.label :"Post new Story"  ,class: 'formlabel' %>
 	<%= f.text_area :content, placeholder: "What's on your Mind ...." %>
 </div>
-<div>
+<div >
+	<%= f.label :"Your Tags"  ,class: 'formlabel' %>
 	<%= f.text_field :all_tags, placeholder: "Tags separated with comma" %>
 </div>
-<span class="picture">
+<span class="picture" >
+	<%= f.label :"Upload Image" ,class: 'formlabel' %>
 	<%= f.file_field :image %>
 </span>
 <%= f.submit "Post", class: "btn btn-primary" %>

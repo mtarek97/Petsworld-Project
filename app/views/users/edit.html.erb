@@ -1,28 +1,32 @@
 <% provide(:title, "Edit user") %>
-<h1 style = "color:#fff;font-family:Comic Sans MS, cursive, sans-serif;">Update your profile</h1>
+<h1 style = "color:#000;font-family:Comic Sans MS, cursive, sans-serif;">Update your profile</h1>
 <div class="row">
 <div class="col-md-4 col-md-offset-4">
 <%= form_for(@user) do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
                 <div class="uk-block" style="padding-bottom: 10px;">
+                <%= f.label :first_name ,class: 'formlabel' %>
                 <%= f.text_field :first_name,class: 'form-control' ,"placeholder"=>"First Name"%>
                 </div>
                 <!-- End First name INPUT -->
 
                 <!-- Start Last name INPUT -->
                 <div class="uk-block" style="padding-bottom: 10px;">
-                 <%= f.text_field :last_name,class: 'form-control' ,"placeholder"=>"Last Name"%>
+                <%= f.label :last_name ,class: 'formlabel' %>
+                <%= f.text_field :last_name,class: 'form-control' ,"placeholder"=>"Last Name"%>
                 </div>
                 <!-- End Last name INPUT -->
 
                 <!-- Start Email adress INPUT -->
                 <div class="uk-block" style="padding-bottom: 10px;">
+                <%= f.label :email ,class: 'formlabel' %>
                  <%= f.email_field  :email,class: 'form-control' ,"placeholder"=>"Email"%>
                 </div>
                 <!-- End Email adress INPUT -->
 
                 <!-- Start USERNAME INPUT -->
                 <div class="uk-block" style="padding-bottom: 10px;">
+                <%= f.label :user_name ,class: 'formlabel' %>
                 <%= f.text_field  :user_name,class: 'form-control' ,"placeholder"=>"Username"%>
                 </div>
 
@@ -35,6 +39,7 @@
                      </div>
                  <!-- Start PASSWORD INPUT -->
                 <div class="uk-block" style="padding-bottom: 10px;">
+                <%= f.label :animalname ,class: 'formlabel' %>
                  <%= f.text_field  :animalname,class: 'form-control' ,"placeholder"=>"Name"%>
                 </div>
                 <!-- End PASSWORD INPUT -->

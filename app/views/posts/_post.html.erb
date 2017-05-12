@@ -1,13 +1,18 @@
 
 <li id="post-<%= post.id %>">
+	<div class="posts_info">
 	<%= link_to gravatar_for(post.user, size: 50), post.user %>
 	<span class="user"><%= link_to post.user.user_name, post.user %></span>
-	<span class="content"><%=  simple_format(post.content.gsub(/\n/, '<br/>').gsub( / / ,'&nbsp;'))  %>
+	<div class = "post_content">
+		<span class="content"><%=  simple_format(post.content.gsub(/\n/, '<br/>').gsub( / / ,'&nbsp;'))  %>
 		<%= image_tag post.image.url(:medium) if post.image? %>
 		<div class="tags">
+		tags :
 			<%=raw tag_links(post.all_tags)%>
 		</div>
 	</span>
+	</div>
+	
 	<span class="timestamp">
 		Posted <%= link_to time_ago_in_words(post.created_at), post %> ago.
 		<% if current_user?(post.user) %>
@@ -27,7 +32,8 @@
 		<%end%>
 
 	</span >
-	<div >
+	</div>
+	<div class="comment" >
 		<h4 id="comments_counter">Comments (<%= post.comments.count %>)</h4>
 		<ul>
 			<%= render partial: 'comments/comment', locals: {post: post}, collection: post.comments %>		

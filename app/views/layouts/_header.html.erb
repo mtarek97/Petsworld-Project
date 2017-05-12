@@ -2,12 +2,12 @@
 	<div class="container">
 		<ul class="nav navbar-nav navbar-left" >
 			<li  ><div class="navbar-brand" id="brand">
-				<%= link_to image_tag("pet.png", alt: "PetsWorld logo" ),root_path %>
+				<%= link_to image_tag("Untitled-4.png", alt: "PetsWorld logo"),root_path %>
 			</div></li>
 
 			<li><div class="search">
 				<%= form_tag(users_path, :method => "get") do %>
-			<%= text_field_tag :search, params[:search],class: "form-control", placeholder: "Search Users" %>
+				<%= text_field_tag :search, params[:search],class: "form-control", placeholder: "Search Users" %>
 			</div></li>
 			<li><div class = "searchbtn">
 				<%= submit_tag "Search" ,  :class => 'btn btn-primary'%>

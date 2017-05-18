@@ -2,8 +2,9 @@
 <h1 style = "color:#000;font-family:Comic Sans MS, cursive, sans-serif;">Update your profile</h1>
 <div class="row">
 <div class="col-md-4 col-md-offset-4">
-<%= form_for(@user) do |f| %>
+<%= form_for @user, html: { multipart: true } do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
+
                 <div class="uk-block" style="padding-bottom: 10px;">
                 <%= f.label :first_name ,class: 'formlabel' %>
                 <%= f.text_field :first_name,class: 'form-control' ,"placeholder"=>"First Name"%>
@@ -49,12 +50,13 @@
                       <label id="label1"><%= f.radio_button(:animalgender, "male","class"=>"uk-radio"  )%>Male</label>
                       <label id="label2"><%= f.radio_button(:animalgender, "female","class"=>"uk-radio"  )%>Female</label>
                   </div>
-                  <div class="gravatar_edit">
-<%= gravatar_for @user %>
-<a href="http://gravatar.com/emails" target=_blank>change</a>
-</div>
+                    <span class="picture" >
+  <%= f.label :"Upload Image" ,class: 'formlabel' %>
+  <%= f.file_field :picture %>
+  
+</span>
 
-
+                      
 <%= f.submit "Save changes", class: "btn btn-primary" %>
 <% end %>
 </div>

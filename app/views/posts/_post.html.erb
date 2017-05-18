@@ -1,11 +1,11 @@
 
 <li id="post-<%= post.id %>">
 	<div class="posts_info">
-	<%= link_to gravatar_for(post.user, size: 50), post.user %>
+  <%=   image_tag current_user.picture.thumb.url if current_user.picture?  %>
 	<span class="user"><%= link_to post.user.user_name, post.user %></span>
 	<div class = "post_content">
 		<span class="content"><%=  simple_format(post.content.gsub(/\n/, '<br/>').gsub( / / ,'&nbsp;'))  %>
-		<%= image_tag post.image.url(:medium) if post.image? %>
+		<%=    image_tag post.picture.thumb.url  if post.picture? %>
 		<div class="tags">
 		tags :
 			<%=raw tag_links(post.all_tags)%>
@@ -40,8 +40,8 @@
 		</ul>
 		<div>
 			<%= form_for ([post, Comment.new]) do |f| %>
-			<%= link_to gravatar_for(current_user, size: 25), current_user %>
-			<span ><small><%= link_to current_user.user_name, current_user %></small></span>
+  <%=   image_tag current_user.picture.thumb.url if current_user.picture?  %>
+									<span ><small><%= link_to current_user.user_name, current_user %></small></span>
 			<div class="field" style="color:black;"><%= f.text_area :body, placeholder: "Add a comment" %><br/></div>
 			<%= f.submit "Add Comment" , class: "btn btn-primary" %>
 			<% end %>

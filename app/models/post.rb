@@ -10,9 +10,14 @@ class Post < ApplicationRecord
 	validates_presence_of :all_tags
 	validates :user_id, presence: true
 	validates :content, presence: true, length: { maximum: 140 }
-	validate :picture_size
-	has_attached_file :image, styles: { large:"600x600>",medium: "400x400>", thumb: "100x100#" }
-	validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+	validates_processing_of :picture
+ 
+validate :image_size_validation
+ 
+   
+  def image_size_validation
+    errors[:picture] << "should be less than 500KB" if picture.size > 0.5.megabytes
+  end
 
 	act_as_likee
 
@@ -32,11 +37,6 @@ class Post < ApplicationRecord
 		Tag.find_by_name!(name).posts
 	end
 	
-	private
-	# Validates the size of an uploaded picture.
-	def picture_size
-		if picture.size > 5.megabytes
-			errors.add(:picture, "should be less than 5MB")
-		end
-	end
+	
+	
 end

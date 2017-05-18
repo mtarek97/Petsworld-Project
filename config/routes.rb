@@ -17,6 +17,11 @@ Rails.application.routes.draw do
 			get :following, :followers
 		end
 	end
+	resources :users do
+		member do
+			get :confirm_email
+		end
+	end
 	resources :posts do
 		member do
 			get 'like'

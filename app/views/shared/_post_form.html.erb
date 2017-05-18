@@ -1,6 +1,18 @@
 <%= form_for(@post, html: { multipart: true }) do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 <div class="field">
+ <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being published:</h2>
+ 
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
 	<%= f.label :"Post new Story"  ,class: 'formlabel' %>
 	<%= f.text_area :content, placeholder: "What's on your Mind ...." %>
 </div>
@@ -10,7 +22,10 @@
 </div>
 <span class="picture" >
 	<%= f.label :"Upload Image" ,class: 'formlabel' %>
-	<%= f.file_field :image %>
+	<%= f.file_field :picture %>
+	 <% if f.object.picture? %>
+      <%= image_tag f.object.picture.thumb.url %>
+      <% end %>
 </span>
 <%= f.submit "Post", class: "btn btn-primary" %>
 

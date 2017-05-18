@@ -3,7 +3,6 @@
 	<aside class="col-md-4 ">
 	<div class="account_post">
 			<section class="user_info" style ="padding-bottom: 20px;">
-				<%= gravatar_for @user %>
 				<h1 style ="display: inline ; margin-bottom: "><%= @user.user_name %></h1>
 				<br>
 				<br>
@@ -16,7 +15,7 @@
 				<% if @users.any? %>
 				<div class="user_avatars">
 					<% @users.each do |user| %>
-					<%= link_to gravatar_for(user, size: 30), user %>
+					<%=   user %>
 					<% end %>
 				</div>
 				<% end %>

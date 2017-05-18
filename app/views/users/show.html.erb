@@ -6,8 +6,8 @@
 				<section class="user_info"  >
 					<div >
 						<h1 >
-							<%= gravatar_for @user %>
-							<%= @user.user_name %>
+           <%=  image_tag @user.picture.thumb.url if @user.picture? %>			
+			<%= @user.user_name %>
 						</h1>
 					</div>
 					<br>
@@ -15,6 +15,7 @@
 						<p class="phome">Animal name : <span style="display: inline;color:#000;"><%= @user.animalname %></span> </p>
 						<p class="phome">Animal type : <span style="display: inline;color:#000;"><%= @user.animaltype %> </span></p>
 						<p class="phome">Animal gender : <span style="display: inline;color:#000;"><%= @user.animalgender %></span> </p>
+
 					</div>
 
 				</section>

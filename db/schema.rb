@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510212902) do
+ActiveRecord::Schema.define(version: 20170518194012) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -85,8 +85,11 @@ ActiveRecord::Schema.define(version: 20170510212902) do
     t.string   "animalname"
     t.string   "password_confirmation"
     t.boolean  "admin"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.boolean  "email_confirm",         default: false
+    t.string   "confirm_token"
+    t.string   "picture"
   end
 
 end

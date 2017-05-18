@@ -24,7 +24,27 @@ Rails.application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
+config.action_mailer.perform_deliveries = true
 
+  # Raises error for missing translations
+  # config.action_view.raise_on_missing_translations = true
+host = 'localhost:3000'
+config.action_mailer.default_url_options = { host: host }
+  # Use an evented file watcher to asynchronously detect changes in source code,
+  # routes, locales, etc. This feature depends on the listen gem.
+  config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = {
+
+ :address              => "smtp.gmail.com",
+ :port                 => 587,
+domain: 'gmail.com',
+user_name: 'shazly0120100',
+password: '57712150a',
+authentication: 'plain',
+:enable_starttls_auto => true
+
+
+  }
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.

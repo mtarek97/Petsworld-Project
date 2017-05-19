@@ -32,18 +32,18 @@ class UsersController < ApplicationController
 
 			end
 		end
-def confirm_email
-@user= User.find_by_confirm_token(params[:id])
-if @user
-@user.email_activate
-flash[:success]='welcome'
-redirect_to root_url
-else
-flash[:error]='Error accure'
-redirect_to root_url
-end
+		def confirm_email
+			@user= User.find_by_confirm_token(params[:id])
+			if @user
+				@user.email_activate
+				flash[:success]='welcome'
+				redirect_to root_url
+			else
+				flash[:error]='Error accure'
+				redirect_to root_url
+			end
 
-end
+		end
 
 		def show
 			@user = User.find(params[:id])
@@ -70,10 +70,10 @@ end
 
 		def update
 			@user = User.find(params[:id])
-					@user.update(user_params)
+			@user.update(user_params)
 
-				flash[:success] = "Profile updated"
-				redirect_to @user
+			flash[:success] = "Profile updated"
+			redirect_to @user
 			
 			
 		end

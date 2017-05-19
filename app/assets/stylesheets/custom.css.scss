@@ -544,7 +544,8 @@ aside section{
 .post_content p{
 	color:#000;
 }
-.post_content{
+.content{
+	border: 2px solid #303030;
 	background-color:#fff;
 	padding: 5px;
 	border-radius:5px;
@@ -552,16 +553,19 @@ aside section{
 	margin-bottom:10px;
 }
 .comment ul li{
+	border : 2px solid #303030;
 	color:black;
 }
 .tags{
+	border-top:1px solid #000 ;
+	padding-top:4px;
 	color:black;
 }
 .comment ul li ul li{
 	border : 2px solid #000;
 	border-radius:3px;	
 }
-
-
-
-
+.gravatar{
+	border-radius:5px;
+	broder : 1px solid rgba(0,0,0,.15);
+}

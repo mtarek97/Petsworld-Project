@@ -11,9 +11,11 @@ class CommentsController < ApplicationController
 
 		if @comment.save
 			if (@comment.commentable_type == "Post")
+				create_notification @comment.commentable, @comment
 				flash[:success] = "Your comment was successfully added!"
 				redirect_to :back
 			elsif (@comment.commentable_type == "Comment")
+				create_notification @comment.commentable, @comment
 				flash[:success] = "Your Reply was successfully added!"
 				redirect_to :back
 			end
@@ -24,6 +26,23 @@ class CommentsController < ApplicationController
 				flash[:danger] = "Your reply wasn't added!"
 			end
 			redirect_to :back
+		end
+	end
+
+	def create_notification(commentable, comment)
+		return if commentable.user.id == current_user.id
+		if (comment.commentable_type =="Post")
+			Notification.create(user_id: commentable.user.id,
+				notified_by_id: current_user.id,
+				post_id: commentable.id,
+				identifier: comment.id,
+				notice_type: 'comment')
+		elsif (comment.commentable_type =="Comment")
+			Notification.create(user_id: commentable.user.id,
+				notified_by_id: current_user.id,
+				post_id: commentable.commentable_id,
+				identifier: comment.id,
+				notice_type: 'reply')
 		end
 	end
 

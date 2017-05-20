@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+	has_many :notifications, dependent: :destroy
 	has_many :comments, as: :commentable , dependent: :destroy
 	has_many :taggings ,:dependent => :destroy
 	has_many :tags,through: :taggings
@@ -11,13 +12,13 @@ class Post < ApplicationRecord
 	validates :user_id, presence: true
 	validates :content, presence: true, length: { maximum: 140 }
 	validates_processing_of :picture
- 
-validate :image_size_validation
- 
-   
-  def image_size_validation
-    errors[:picture] << "should be less than 500KB" if picture.size > 0.5.megabytes
-  end
+	
+	validate :image_size_validation
+	
+	
+	def image_size_validation
+		errors[:picture] << "should be less than 500KB" if picture.size > 0.5.megabytes
+	end
 
 	act_as_likee
 

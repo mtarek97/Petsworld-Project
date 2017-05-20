@@ -1,0 +1,4 @@
+
+<ul class="users" >
+	<%= render @notifications.order('created_at DESC').where(read: false) %>
+</ul>

@@ -1,0 +1,9 @@
+<li>
+<% if notification.notice_type == "comment" %>
+<%= link_to "#{notification.notified_by.user_name} has commented on your post , #{time_ago_in_words(notification.created_at)} ago",
+	link_through_path(notification) %>
+<% elsif notification.notice_type == "reply" %>
+<%= link_to "#{notification.notified_by.user_name} has replied to your comment , #{time_ago_in_words(notification.created_at)} ago",
+	link_through_path(notification) %>
+<% end %>
+</li>

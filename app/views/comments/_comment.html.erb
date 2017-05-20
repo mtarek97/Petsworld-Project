@@ -1,6 +1,6 @@
 <div>
 	<li>
-		<%= image_tag current_user.picture.thumb.url  if current_user.picture?  %>
+		<%= image_tag comment.user.picture.thumb.url  if comment.user.picture?  %>
 		<span ><small><%= link_to comment.user.user_name, comment.user %></small></span><br>
 		<%= comment.body %><br>
 		<small>Submitted <%= time_ago_in_words(comment.created_at) %> ago</small>
@@ -11,7 +11,7 @@
 		<ul>
 			<% comment.comments.each do |reply| %>
 			<div>
-				<li><%= image_tag current_user.picture.thumb.url  if current_user.picture?  %>
+				<li><%= image_tag reply.user.picture.thumb.url  if reply.user.picture?  %>
 
 					<span ><small><%= link_to reply.user.user_name, reply.user %></small></span><br>
 					<%= reply.body %><br>

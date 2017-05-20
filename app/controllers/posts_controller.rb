@@ -32,17 +32,19 @@ class PostsController < ApplicationController
 		flash[:success] = "Post deleted"
 		redirect_to request.referrer || root_url
 	end
-	def like
 
+	def like
 		@post=Post.find(params[:id])
 		if current_user.likes?(@post)
 
 			current_user.unlike(@post)
 		else
+			create_notification @post
 			current_user.like(@post)
 		end	
 		redirect_to :back
 	end
+	
 	def show
 		@post = Post.find(params[:id])
 	end
@@ -76,5 +78,12 @@ class PostsController < ApplicationController
 		redirect_to root_url if @post.nil?
 	end
 
-
+	def create_notification(post)
+		return if post.user.id == current_user.id
+		Notification.create(user_id: post.user.id,
+			notified_by_id: current_user.id,
+			post_id: post.id,
+			identifier: post.id,
+			notice_type: 'like')
+	end
 end

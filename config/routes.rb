@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+	get 'notifications/:id/link_through', to: 'notifications#link_through',
+	as: :link_through
+	get 'notifications', to: 'notifications#index'  
+
 	root 'static_pages#welcome'
 	get 'help' => 'static_pages#help'
 	get 'about' => 'static_pages#about'

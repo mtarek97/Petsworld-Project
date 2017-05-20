@@ -6,13 +6,13 @@
 			</div></li>
 
 			<li><div class="search">
-				<%= form_tag(users_path, :method => "get" ) do %>
-				<%= text_field_tag :search, params[:search],class: "form-control", placeholder: "Search Users" %>
+				<%#= form_tag(users_path, :method => "get" ) do %>
+				<%#= text_field_tag :search, params[:search],class: "form-control", placeholder: "Search Users" %>
 			</div></li>
 			<li><div class = "searchbtn">
-				<%= submit_tag "Search" ,  :class => 'btn btn-primary'%>
+				<%#= submit_tag "Search" ,  :class => 'btn btn-primary'%>
 			</div></li>
-			<% end %>	
+			<%# end %>	
 		</ul>
 		
 
@@ -21,6 +21,7 @@
 				<li><%= link_to "Home", root_path %></li>
 				<li><%= link_to "Help", help_path %></li>
 				<% if logged_in? %>
+				<%= render 'notifications/notification_dropdown' %>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 						Account <b class="caret"></b>

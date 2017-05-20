@@ -1,0 +1,4 @@
+<li>
+	<%= link_to "#{notification.notified_by.user_name} has #{notification.notice_type}ed on your post , #{time_ago_in_words(notification.created_at)} ago",
+	link_through_path(notification) %>
+</li>

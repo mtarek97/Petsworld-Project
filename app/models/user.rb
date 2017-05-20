@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+	has_many :notifications, dependent: :destroy  
 	has_many :comments, dependent: :destroy
 	has_many :posts, dependent: :destroy
 	has_many :active_relationships, class_name: "Relationship",
@@ -21,13 +22,13 @@ class User < ApplicationRecord
 	validates :password, length: { minimum: 6 }, allow_blank: true
 	act_as_liker
 	validates_processing_of :picture
- 
-validate :image_size_validation
- 
-   
-  def image_size_validation
-    errors[:picture] << "should be less than 500KB" if picture.size > 0.5.megabytes
-  end
+	
+	validate :image_size_validation
+	
+	
+	def image_size_validation
+		errors[:picture] << "should be less than 500KB" if picture.size > 0.5.megabytes
+	end
 
 	# Returns a user's status feed.
 	def feed
@@ -37,9 +38,9 @@ validate :image_size_validation
 			OR user_id = :user_id", user_id: id)
 	end
 	def email_activate
-self.email_confirm =true
-self.confirm_token =nil
-save!(:validates => false)
+		self.email_confirm =true
+		self.confirm_token =nil
+		save!(:validates => false)
 
 
 
@@ -58,11 +59,11 @@ save!(:validates => false)
 	def unfollow(other_user)
 		active_relationships.find_by(followed_id: other_user.id).destroy
 	end
-def confirmation_token
-	if self.confirm_token.blank?
-		self.confirm_token = SecureRandom .urlsafe_base64.to_s
+	def confirmation_token
+		if self.confirm_token.blank?
+			self.confirm_token = SecureRandom .urlsafe_base64.to_s
+		end
 	end
-end
 	# Returns true if the current user is following the other user.
 	def following?(other_user)
 		following.include?(other_user)

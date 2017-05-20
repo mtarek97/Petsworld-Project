@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 				flash[:success]='welcome'
 				redirect_to root_url
 			else
-				flash[:error]='Error accure'
+				flash[:error]='Error accured'
 				redirect_to root_url
 			end
 

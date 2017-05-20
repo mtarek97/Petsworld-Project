@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
 			#	flash.now[:danger] = 'Activate your account'
 			#end
 		#else
-		#	flash.now[:danger] = 'Invalid email/password combination'
+		#	flash.now[:danger] = 'Invalid username/password combination'
 		#	render 'new'
 		end
 	end

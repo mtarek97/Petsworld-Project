@@ -16,8 +16,8 @@
 	<span class="timestamp">
 		Posted <%= link_to time_ago_in_words(post.created_at), post %> ago.
 		<% if current_user?(post.user) %>
-		<%= link_to "delete   ", post, method: :delete
-		data: { confirm: "You sure?" } %> ,
+		<%= link_to "delete   ", post, method: :delete,
+		data: { confirm: "You sure?" } %>
 		<%= link_to "edit   ", edit_post_path(post) %>
 		<% end %>
 		<%= taggle_like_button(post,current_user)%>

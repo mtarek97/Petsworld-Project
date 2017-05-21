@@ -1,24 +1,4 @@
-# README
+# Petsworld-Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+A social community web application between pet’s owners, it supports them with all information they need about their pet life . it has been developed using ruby on rails , bootstrap , css and html with a little javascript .
+it included a various features such as Notification system , follow , comment , like system , full profile and email activation system as well as search system .

@@ -26,7 +26,7 @@ end
 #activate emails
 users = User.all
 users.each do |user|
-	user.email_confirm = true
+	user.email_activate
 end
 
 #Posts

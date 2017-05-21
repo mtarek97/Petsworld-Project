@@ -41,9 +41,6 @@ class User < ApplicationRecord
 		self.email_confirm =true
 		self.confirm_token =nil
 		save!(:validates => false)
-
-
-
 	end
 	def self.search(search)
 		where("user_name LIKE ?", "%#{search}%") 

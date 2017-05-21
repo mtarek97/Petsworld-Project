@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 				flash[:success]='welcome'
 				redirect_to root_url
 			else
-				flash[:error]='Error accure'
+				flash[:error]='Error accured'
 				redirect_to root_url
 			end
 
@@ -71,7 +71,6 @@ class UsersController < ApplicationController
 		def update
 			@user = User.find(params[:id])
 			@user.update(user_params)
-
 			flash[:success] = "Profile updated"
 			redirect_to @user
 			

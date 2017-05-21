@@ -6,15 +6,25 @@
 				<section class="user_info"  >
 					<div >
 						<h1 >
-           <%=  image_tag @user.picture.thumb.url if @user.picture? %>			
-			<%= @user.user_name %>
+							<%=  image_tag @user.picture.thumb.url if @user.picture? %>			
+							<%= @user.user_name %>
 						</h1>
 					</div>
 					<br>
 					<div style="padding-top: 5px; ">
-						<p class="phome">Animal name : <span style="display: inline;color:#000;"><%= @user.animalname %></span> </p>
-						<p class="phome">Animal type : <span style="display: inline;color:#000;"><%= @user.animaltype %> </span></p>
-						<p class="phome">Animal gender : <span style="display: inline;color:#000;"><%= @user.animalgender %></span> </p>
+						<% if @user.animalname.blank?  && @user.animaltype.blank?  && @user.animalgender.blank? %>
+						<p class="phome"><%= link_to "add your Pet info !", edit_user_path(current_user) %></span> </p>
+						<% else %> 
+						<% unless @user.animalname.blank? %>
+						<p class="phome">Pet name : <span style="display: inline;color:#000;"><%= @user.animalname %></span> </p>
+						<%end %>
+						<% unless @user.animaltype.blank? %>
+						<p class="phome">Pet type : <span style="display: inline;color:#000;"><%= @user.animaltype %> </span></p>
+						<%end%>
+						<% unless @user.animalgender.blank? %>
+						<p class="phome">Pet gender : <span style="display: inline;color:#000;"><%= @user.animalgender %></span> </p>
+						<%end%>
+						<%end%>
 
 					</div>
 

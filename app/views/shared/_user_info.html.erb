@@ -1,4 +1,4 @@
 		<%=    image_tag post.picture.thumb.url  if post.picture? %>
-<h1><%= current_user.user_name %></h1>
-<span><%= link_to "view my profile", current_user %></span>
-<span><%= pluralize(current_user.posts.count, "post") %></span>
+		<h1><%= current_user.user_name %></h1>
+		<span><%= link_to "view my profile", current_user %></span>
+		<span><%= pluralize(current_user.posts.count, "post") %></span>

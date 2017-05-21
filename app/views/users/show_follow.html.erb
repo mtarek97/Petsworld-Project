@@ -1,7 +1,7 @@
 <% provide(:title, @title) %>
 <div class="row">
 	<aside class="col-md-4 ">
-	<div class="account_post">
+	<div class="homepost">
 			<section class="user_info" style ="padding-bottom: 20px;">
 				<h1 style ="display: inline ; margin-bottom: "><%= @user.user_name %></h1>
 				<br>
@@ -15,7 +15,11 @@
 				<% if @users.any? %>
 				<div class="user_avatars">
 					<% @users.each do |user| %>
+<<<<<<< HEAD
   <%=   image_tag user.picture.thumb.url if user.picture?  %>
+=======
+					<%= image_tag user.picture.thumb.url if user.picture? %>
+>>>>>>> 20b2a4e22821941047ee8d445d1cab0314687eb9
 					<% end %>
 				</div>
 				<% end %>
